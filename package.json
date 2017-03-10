@@ -45,7 +45,10 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
+    "express": "4.15.2",
+    "node-uuid": "1.4.7",
     "react": "15.2.1",
-    "react-dom": "15.2.1"
+    "react-dom": "15.2.1",
+    "ws": "2.2.0"
   }
 }

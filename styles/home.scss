@@ -7,8 +7,6 @@
 h1 {
   color: blue;
 }
-
-
     body {
       background: white;
       color: black;
@@ -67,7 +65,13 @@ h1 {
       flex: 8;
     }
 
-    .message-username {
+    .message-username-red {
+      flex: 2;
+      font-weight: 700;
+      color: red;
+    }
+
+    .message-change-username {
       flex: 2;
       font-weight: 700;
     }
@@ -95,3 +99,14 @@ h1 {
       text-decoration: none;
     }
 
+    .navbar-users {
+      color: inherit;
+      display: block;
+      float: right;
+      font-weight: 400;
+      font-size: 20px;
+      height: 40px;
+      line-height: 70px;
+      padding: 0 10px;
+      text-decoration: none;
+    }
