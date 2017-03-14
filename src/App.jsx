@@ -3,25 +3,7 @@ import ChatBar from './ChatBar.jsx';
 import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
 const uuid = require('uuid/v1');
-
-
-// var data = {
-//   currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
-//   messages: [
-//     {
-//       id: 1,
-//       username: "Bobby Brown",
-//       content: "Has anyone seen my marbles?",
-//     },
-//     {
-//       id: 2,
-//       username: "Anonymous",
-//       content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-//     }
-//   ]
-// }
-
-
+const colors = ['red', 'blue', 'orange', 'brown'];
 
 
 
@@ -31,9 +13,9 @@ class App extends Component {
     this.state = {
       message: 'Type your message',
       username: 'Who?',
-      messages: []
+      messages: [],
+      color: 'black'
     };
-
   }
 
 
@@ -61,6 +43,7 @@ class App extends Component {
     }
   }
 
+
   _changeMessage(ev){
     if(ev.which === 13){
       this.setState({message: ev.target.value});
@@ -76,7 +59,17 @@ class App extends Component {
       let new_u = ev.target.value;
       const newData = {id: null, type: 'pnot', old_u: old_u, new_u: new_u};
       this.my_socket.send(JSON.stringify(newData));
+      let color = colors[this._randomNumber()];
+      this.setState({color: color})
+
     }
+  }
+
+  _randomNumber(){
+    var min=0;
+    var max=4;
+    var val=Math.floor((Math.random()*(max-min))+min);
+    return val;
   }
 
 
@@ -88,7 +81,7 @@ class App extends Component {
           <a href="/" className="navbar-brand">Chatty</a>
           <a href="/" className="navbar-users">Users Online {num_mess}</a>
         </nav>
-        <MessageList messages={this.state.messages}/>
+        <MessageList username={this.state.username} color={this.state.color} messages={this.state.messages}/>
         <ChatBar username={this.state.username} message={this.state.message}  changeMessage={this._changeMessage.bind(this)} changeUserName={this._changeUserName.bind(this)}/>
       </div>
     );
